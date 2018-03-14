@@ -1,0 +1,74 @@
+<form class="row" (submit)="cadastrar($event)">
+
+
+<nav class="sidebar light sidebar_left">
+  <ul>
+    <!-- #Include file ="..\inc_sidebar\clientes_sidebar.inc" -->
+    <!-- #Include file ="..\inc_sidebar\clientes_interno_sidebar.inc" -->
+  </ul>
+</nav>
+
+
+<div class="panel-header darkEmerald bg-darkCyan fg-white">
+  Dados Principais
+</div>
+
+
+
+
+  <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+
+
+
+  <div class="form-group">
+    <label>Contato</label>
+    <input name="text" [(ngModel)]="contato.CONTATO" class="form-control" autocomplete="off">
+  </div>
+
+  <div class="form-group">
+    <label>Responsável</label>
+    <input name="text" [(ngModel)]="contato.DATA_CADASTRO" class="form-control" autocomplete="off">
+  </div>
+
+  <div class="form-group">
+
+    <label>Telefone</label>
+    <input name="text" [(ngModel)]="contato.TELEFONE" class="form-control" autocomplete="off">
+    <label>Celular</label>
+    <input name="text" [(ngModel)]="contato.CELULAR " class="form-control" autocomplete="off">
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input name="text" [(ngModel)]="contato.EMAIL" class="form-control" autocomplete="off">
+  </div>
+ <div class="form-group">
+    <label>Area</label>
+    <input name="text" [(ngModel)]="contato.AREA" class="form-control" autocomplete="off">
+  </div>
+
+   <div class="form-group">
+    <label>Data Nascimento</label>
+    <input name="text" [(ngModel)]="contato.DATA_NASCIMENTO " class="form-control" autocomplete="off">
+  </div>
+  
+   <div class="form-group">
+    <label>Vínculo</label>
+    <input name="text" [(ngModel)]="contato.VINCULO" class="form-control" autocomplete="off">
+  </div>
+  
+   <div class="form-group">
+    <label>Dados Bancários</label>
+    <input name="text" [(ngModel)]="contato.DADOS_BANCARIOS" class="form-control" autocomplete="off">
+  </div>
+    <div class="form-group">
+    <label>Profissão</label>
+    <input name="text" [(ngModel)]="contato.PROFISSAO" class="form-control" autocomplete="off">
+  </div>
+  
+  
+  
+
+
+  </form>

@@ -1,0 +1,215 @@
+<div class="container">
+  <form (submit)="cadastrar($event)">
+
+
+    <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+
+    <div class="TextoCadastro">
+
+      <h3>Cadastro</h3>
+    </div>
+
+
+
+
+    <fieldset>
+
+
+      <div class="row">
+        <div class="col-4"> <label>foto</label> <input type="file" [(ngModel)]="cliente.DIR_FOTO" class="form-control"></div>
+        <div class="col-4"> <label>Nome</label> <input type="text" name="title" [(ngModel)]="cliente.nome" class="form-control" autocomplete="off"></div>
+
+      </div>
+
+
+
+      <div class="panel-header darkEmerald bg-darkCyan fg-white">
+        Dados
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+
+          <input type="text" name="dataCadastro" [(ngModel)]="cliente.Data_Cadastro" class="form-control" autocomplete="off"></div>
+        <div class="col-md-4">
+
+          <div class="form-group">
+            <label>Sexo:</label>
+            <label class="checkbox-inline">
+      <input type="radio" [(ngModel)]="cliente.sexo" name="sexo" value="m" text="Masculino">Masculino
+
+      </label>
+
+
+            <label class="checkbox-inline">
+      
+      <input type="radio" [(ngModel)]="cliente.sexo" name="sexo" value="f" text="Feminino">Feminino
+      </label>
+          </div>
+
+
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-md-4"> <label>menor
+      <input type="checkbox" [value]="cliente.menor" class="form-control" autocomplete="off" (change)="CheckMenor($event)">
+      </label></div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-md-3"><label>Responsável</label>
+          <input name="text" [(ngModel)]="cliente.Responsavel" class="form-control" autocomplete="off"></div>
+
+        <div class="col-md-3"> <label>CPF:</label>
+          <input name="text" [(ngModel)]="cliente.CPF" class="form-control" autocomplete="off"></div>
+
+        <div class="col-md-3"> <label>RG:</label>
+          <input name="text" [(ngModel)]="cliente.RG" class="form-control" autocomplete="off"></div>
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <label>Estado Civil</label>
+          <div class="form-group">
+            <label class="radio-inline">
+      <input type="radio" name="ecivil" [ngModel]="cliente.ESTADO_CIVIL" text="Solteira(o)" value="S">Solteiro(a)
+
+  </label>
+            <label class="radio-inline">
+      <input type="radio" name="ecivil" [ngModel]="cliente.ESTADO_CIVIL" text="Casado(a)" value="C">Casado(a)
+
+        </label>
+            <label class="radio-inline">
+      <input type="radio" name="ecivil" [ngModel]="cliente.ESTADO_CIVIL" text="Divorciado(a)" value="D">Divorciado(a)
+
+        </label>
+            <label class="radio-inline">
+      <input type="radio" name="ecivil" [ngModel]="cliente.ESTADO_CIVIL" text="viúva(o)" value="V">viúva(o)
+
+        </label>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-md-4"> <label>Naturalidade</label>
+          <input name="text" [(ngModel)]="cliente.NATURALIDADE" class="form-control" autocomplete="off"></div>
+
+        <div class="col-md-4"> <label>Profissão</label>
+          <input name="text" [(ngModel)]="cliente.PROFISSAO" class="form-control" autocomplete="off">
+        </div>
+
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3"><label>Mãe</label>
+          <input name="text" [(ngModel)]="cliente.NOME_MAE" class="form-control" autocomplete="off"></div>
+      </div>
+
+      <div class="panel-header darkEmerald bg-darkCyan fg-white">
+        Contatos
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="col-md-3"> <label>Telefone</label>
+          <input name="text" [(ngModel)]="cliente.Telefone" class="form-control" autocomplete="off"></div>
+
+        <div class="col-md-3"><label>Celular</label>
+          <input name="text" [(ngModel)]="cliente.Celular" class="form-control" autocomplete="off">
+        </div>
+        <div class="col-md-3"><label>Email</label>
+          <input name="text" [(ngModel)]="cliente.Email" class="form-control" autocomplete="off">
+        </div>
+
+
+      </div>
+
+
+
+<label>Classificação:</label>
+      <div class="row">
+
+        
+
+        <label class="checkbox-inline">
+        <input type="radio" [(ngModel)]="cliente.CLASSIFICAO" value="n" name="classificacao">Normal</label>
+        <label class="checkbox-inline">
+   
+        <input type="radio" [(ngModel)]="cliente.CLASSIFICAO" value="e" name="classificacao" text="Normal"> Especial</label>
+
+
+
+
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-3">
+          <label>Indicacao</label>
+          <select [formControl]="fb.controls['IndicacaoID']" [(ngModel)]="cliente.ID_INDICACAO" required>  
+                                <option value="0">--Select--</option>  
+                                <option *ngFor="let ind of listaIndicacao"   
+                                      value="{{ind.ID_INDICACAO}}">  
+                                    {{ind.DESCRICAO}}  
+                                </option>  
+         </select>
+        </div>
+
+        <div class="col-md-3">
+          <label>Observação</label>
+
+          <textarea [(ngModel)]="cliente.OBS" value="obs" class="form-control" autocomplete="off">
+
+            </textarea>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="panel-header bg-focus-black fg-darkBlue">
+
+      </div>
+
+
+
+
+
+
+
+
+
+      <ag-grid-angular #agGrid style="width: 500px; height: 350px;" class="ag-fresh" [gridOptions]="gridOptions" [rowData]="convenio" [columnDefs]="columnDefs">
+
+
+      </ag-grid-angular>
+
+
+
+      <button name="Excluir" value="Indicacao" class="btn btn-primary" type="submit" (click)="cadastrar($event)">
+              Cadastrar</button>
+
+    </fieldset>
+
+  </form>
+</div>
