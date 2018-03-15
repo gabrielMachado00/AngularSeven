@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ClienteComponent implements OnInit {
 
  id: string;
- @Input() ID_CLIENTE: string;
+ @Input() ID_CLIENTE: number;
   @Input() nome: string;
   @Input() Data_Cadastro: string;
   @Input() TELEFONE: string;

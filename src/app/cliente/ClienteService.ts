@@ -77,9 +77,9 @@ export class ClienteService {
     }
 
 
-   putCliente(cliente: ClienteComponent): Observable<MensagemCadastro> {
+   putCliente(id:number): Observable<MensagemCadastro> {
         return this._http.put('http://localhost:52528/api/Clientes/PutCliente/'
-        + cliente.id, JSON.stringify(cliente), { headers: this.headers })
+        + id , { headers: this.headers })
             .map(() => new MensagemCadastro('Cliente atualizado', true));
 
     }

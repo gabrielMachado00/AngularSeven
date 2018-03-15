@@ -1,5 +1,5 @@
 <div class="container">
-  <form (submit)="cadastrar($event)">
+  <form [formGroup]="meuForm" (submit)="cadastrar($event)">
 
 
     <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
@@ -17,22 +17,39 @@
 
 
       <div class="row">
-        <div class="col-4"> <label>foto</label> <input type="file" [(ngModel)]="cliente.DIR_FOTO" class="form-control"></div>
-        <div class="col-4"> <label>Nome</label> <input type="text" name="title" [(ngModel)]="cliente.nome" class="form-control" autocomplete="off"></div>
+        <div class="col-4"> <label>foto</label> <input type="file" formControlName="DIR_FOTO" [(ngModel)]="cliente.DIR_FOTO" class="form-control"></div>
+        
+        
+        <div class="col-4">
+          <div class="form-group" [ngClass]="{'has-error':!nome.valid &&(nome.dirty||nome.Touched))">
+          <label>Nome</label> <input type="text" formControlName="nome" name="title" [(ngModel)]="cliente.nome" class="form-control" autocomplete="off"></div>
+        </div>
+
+        <span class *ngIf="meuForm.controls['NOME'].invalid && (meuForm.controls['NOME'].dirty || meuForm.controls['NOME'].touched)">
+<ul><li *ngIf="nome.errors.required">
+  O campo Nome é requerido
+</li>
+</ul>
+        </span>
+      
 
       </div>
 
 
-
-      <div class="panel-header darkEmerald bg-darkCyan fg-white">
-        Dados
-      </div>
 
       <div class="row">
         <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error':!Data_Cadastro.valid &&(Data_Cadastro.dirty|Data_Cadastro.Touched))">
 
-          <input type="text" name="dataCadastro" [(ngModel)]="cliente.Data_Cadastro" class="form-control" autocomplete="off"></div>
+          <input type="text" name="dataCadastro"  formControlName="Data_Cadastro" [(ngModel)]="cliente.Data_Cadastro" class="form-control" autocomplete="off"></div>
         <div class="col-md-4">
+
+            <span class *ngIf="meuForm.controls['Data_Cadastro'].invalid && (meuForm.controls['Data_Cadastro'].dirty || meuForm.controls['Data_Cadastro'].touched)">
+                <ul><li *ngIf="meuForm.controls['Data_Cadastro'].errors.required">
+                 O campo data Cadastro é requerido
+                </li>
+                </ul>
+                        </span>
 
           <div class="form-group">
             <label>Sexo:</label>
@@ -47,7 +64,12 @@
       <input type="radio" [(ngModel)]="cliente.sexo" name="sexo" value="f" text="Feminino">Feminino
       </label>
           </div>
-
+          <span class *ngIf="meuForm.controls['SEXO'].invalid && (meuForm.controls['SEXO'].dirty || meuForm.controls['SEXO'].touched)">
+              <ul><li *ngIf="meuForm.controls['SEXO'].errors.required">
+              O campo sexo é requerido
+              </li>
+              </ul>
+                      </span>
 
         </div>
 
@@ -67,13 +89,13 @@
       <div class="row">
 
         <div class="col-md-3"><label>Responsável</label>
-          <input name="text" [(ngModel)]="cliente.Responsavel" class="form-control" autocomplete="off"></div>
+          <input name="text" formControlName="Responsavel"  [(ngModel)]="cliente.Responsavel" class="form-control" autocomplete="off"></div>
 
         <div class="col-md-3"> <label>CPF:</label>
-          <input name="text" [(ngModel)]="cliente.CPF" class="form-control" autocomplete="off"></div>
+          <input name="text" [(ngModel)]="cliente.CPF" formControlName="CPF"  class="form-control" autocomplete="off"></div>
 
         <div class="col-md-3"> <label>RG:</label>
-          <input name="text" [(ngModel)]="cliente.RG" class="form-control" autocomplete="off"></div>
+          <input name="text" [(ngModel)]="cliente.RG" formControlName="RG"  class="form-control" autocomplete="off"></div>
       </div>
 
 
@@ -84,7 +106,7 @@
           <label>Estado Civil</label>
           <div class="form-group">
             <label class="radio-inline">
-      <input type="radio" name="ecivil" [ngModel]="cliente.ESTADO_CIVIL" text="Solteira(o)" value="S">Solteiro(a)
+      <input type="radio" name="ecivil" [ngModel]="cliente.ESTADO_CIVIL"  text="Solteira(o)" value="S">Solteiro(a)
 
   </label>
             <label class="radio-inline">
@@ -108,10 +130,10 @@
       <div class="row">
 
         <div class="col-md-4"> <label>Naturalidade</label>
-          <input name="text" [(ngModel)]="cliente.NATURALIDADE" class="form-control" autocomplete="off"></div>
+          <input name="text" [(ngModel)]="cliente.NATURALIDADE" class="form-control" formControlName="NATURALIDADE"  autocomplete="off"></div>
 
         <div class="col-md-4"> <label>Profissão</label>
-          <input name="text" [(ngModel)]="cliente.PROFISSAO" class="form-control" autocomplete="off">
+          <input name="text" [(ngModel)]="cliente.PROFISSAO" class="form-control" formControlName="PROFISSAO" autocomplete="off">
         </div>
 
 
@@ -120,7 +142,7 @@
       <div class="row">
 
         <div class="col-md-3"><label>Mãe</label>
-          <input name="text" [(ngModel)]="cliente.NOME_MAE" class="form-control" autocomplete="off"></div>
+          <input name="text" [(ngModel)]="cliente.NOME_MAE" class="form-control" formControlName="NOME_MAE" autocomplete="off"></div>
       </div>
 
       <div class="panel-header darkEmerald bg-darkCyan fg-white">
@@ -132,13 +154,13 @@
       <div class="row">
 
         <div class="col-md-3"> <label>Telefone</label>
-          <input name="text" [(ngModel)]="cliente.Telefone" class="form-control" autocomplete="off"></div>
+          <input name="text" [(ngModel)]="cliente.Telefone" class="form-control" formControlName="telefone" autocomplete="off"></div>
 
         <div class="col-md-3"><label>Celular</label>
-          <input name="text" [(ngModel)]="cliente.Celular" class="form-control" autocomplete="off">
+          <input name="text" [(ngModel)]="cliente.Celular" class="form-control" formControlName="Celular" autocomplete="off">
         </div>
         <div class="col-md-3"><label>Email</label>
-          <input name="text" [(ngModel)]="cliente.Email" class="form-control" autocomplete="off">
+          <input name="text" [(ngModel)]="cliente.Email" class="form-control"  formControlName="Email" autocomplete="off">
         </div>
 
 
@@ -165,7 +187,7 @@
       <div class="form-group">
         <div class="col-md-3">
           <label>Indicacao</label>
-          <select [formControl]="fb.controls['IndicacaoID']" [(ngModel)]="cliente.ID_INDICACAO" required>  
+          <select [formControl]="fb.controls['IndicacaoID']" formControlName="ID_INDICACAO" [(ngModel)]="cliente.ID_INDICACAO" required>  
                                 <option value="0">--Select--</option>  
                                 <option *ngFor="let ind of listaIndicacao"   
                                       value="{{ind.ID_INDICACAO}}">  
@@ -194,19 +216,10 @@
 
 
 
+      
 
 
-
-
-
-      <ag-grid-angular #agGrid style="width: 500px; height: 350px;" class="ag-fresh" [gridOptions]="gridOptions" [rowData]="convenio" [columnDefs]="columnDefs">
-
-
-      </ag-grid-angular>
-
-
-
-      <button name="Excluir" value="Indicacao" class="btn btn-primary" type="submit" (click)="cadastrar($event)">
+      <button name="Excluir" value="Indicacao" class="btn btn-primary" type="submit" [disabled]="!meuForm.valid" (click)="Salvar($event)">
               Cadastrar</button>
 
     </fieldset>
