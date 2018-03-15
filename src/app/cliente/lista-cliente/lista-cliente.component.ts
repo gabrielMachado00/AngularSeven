@@ -42,9 +42,7 @@ cliente:ClienteComponent[];
     this.editContactId = cliente.id;
     this.displayDeleteDialog = true;
 }
-
 //ira carregar o id e o nome do cliente 
-
 loadData(){
 
   this.service.getClientes()
@@ -52,7 +50,6 @@ loadData(){
     this.cliente =cliente;
  });
 }
-
 
 
 //metodo boolean por que ira mostrar um dialog confirmado sim ou nao a exclusao
@@ -73,14 +70,7 @@ okDelete(isDeleteConfirm: boolean) {
 
 
 loadClienteLazy(event: LazyLoadEvent) {
-  //in a real application, make a remote request to load data using state metadata from event
-  //event.first = First row offset
-  //event.rows = Number of rows per page
-  //event.sortField = Field name to sort with
-  //event.sortOrder = Sort order as number, 1 for asc and -1 for dec
-  //filters: FilterMetadata object having field as key and filter value, filter matchMode as value
-  
-  //imitate db connection over a network
+
   setTimeout(() => {
       if(this.datasource) {
           this.cliente = this.datasource.slice(event.first, (event.first + event.rows));
