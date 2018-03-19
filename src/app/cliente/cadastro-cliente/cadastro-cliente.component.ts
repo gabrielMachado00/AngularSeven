@@ -34,49 +34,14 @@ export class CadastroClienteComponent implements OnInit {
         this.router = router;
 
 
-        this.meuForm = this.fb.group({  
-    ID_CLIENTE:['', [Validators.required]],
-    nome: ['', [Validators.required]],
-    Data_Cadastro:['', [Validators.required]],
-     TELEFONE: ['', [Validators.required]],
-     TELEFONE2: ['', [Validators.required]],
-   FAX: ['', [Validators.required]],
-    CELULAR: ['', [Validators.required]],
-     CONTATOx: ['', [Validators.required]],
-OBS: ['', [Validators.required]],
- EMAIL: ['', [Validators.required]],
-CPF: ['', [Validators.required]],
-RG: ['', [Validators.required]],
-       SEGMENTO: ['', [Validators.required]],
-     RAMO: ['', [Validators.required]],
-          RAZAO_SOCIAL:['', [Validators.required]],
-           title:['', [Validators.required]],
-         DESDE: ['', [Validators.required]],
-       CNPJ: ['', [Validators.required]],
-           DataNascimento: ['', [Validators.required]],
-     INDICADO: ['', [Validators.required]],
-      SEXO: ['', [Validators.required]],
-
-  ESTADO_CIVIL: ['', [Validators.required]],
- NATURALIDADE: ['', [Validators.required]],
-PROFISSAO:['', [Validators.required]],
-    NOME_MAE:['', [Validators.required]],
- NOME_PAI: ['', [Validators.required]],
-
-  CLASSIFICACAO: ['', [Validators.required]],
-      ALERTA_CLINICO: ['', [Validators.required]],
-
-   RESPONSAVEL:['', [Validators.required]],
-    CPF_RESPONSAVEL:['', [Validators.required]],
-
-
-        })  
-
+   
 
 
         if (this.route.snapshot.params["id"]) {  
             this.id = this.route.snapshot.params["id"];  
         }  
+
+
   
 }
 
@@ -85,14 +50,140 @@ PROFISSAO:['', [Validators.required]],
 
 
     ngOnInit() {
+
+
+
+        this.meuForm = this.fb.group({  
+            ID_CLIENTE:['', [Validators.required]],
+           NOME: ['', [Validators.required]],
+            Data_Cadastro:['', [Validators.required]],
+             TELEFONE: ['', [Validators.required]],
+             TELEFONE2: ['', [Validators.required]],
+           FAX: ['', [Validators.required]],
+            CELULAR: ['', [Validators.required]],
+             CONTATO: ['', [Validators.required]],
+        OBS: ['', [Validators.required]],
+         EMAIL: ['', [Validators.required]],
+        CPF: ['', [Validators.required]],
+        RG: ['', [Validators.required]],
+               SEGMENTO: ['', [Validators.required]],
+             RAMO: ['', [Validators.required]],
+                  RAZAO_SOCIAL:['', [Validators.required]],
+
+                 DESDE: ['', [Validators.required]],
+               CNPJ: ['', [Validators.required]],
+                   DataNascimento: ['', [Validators.required]],
+
+              SEXO: ['', [Validators.required]],
+        ID_INDICACAO: ['', [Validators.required]],
+          ESTADO_CIVIL: ['', [Validators.required]],
+      
+        PROFISSAO:['', [Validators.required]],
+            NOME_MAE:['', [Validators.required]],
+         NOME_PAI: ['', [Validators.required]],
+         NATURALIDADE: ['', [Validators.required]],
+          CLASSIFICACAO: ['', [Validators.required]],
+    
+           RESPONSAVEL:['', [Validators.required]],
+            CPF_RESPONSAVEL:['', [Validators.required]],
+            OBSERVACAO:['', [Validators.required]],
+
+
+    })
+
+
+
+
+
         if (this.id > 0) {  
             this.title = "Edit";  
             this.clienteService.getCliente(this.id)  
             .subscribe(cliente=>{
                this.cliente=cliente;
-            });
+
+            var nome=this.cliente[0].NOME;
+            var Data_Cadastro=this.cliente[0].DATA_CADASTRO;
+            var  TELEFONE=this.cliente[0].TELEFONE;
+            var   TELEFONE2=cliente[0].TELEFONE2;
+              var  FAX=cliente[0].FAX;
+             var   CELULAR=cliente[0].CELULAR;
+           var      CONTATO=cliente[0].CONTATO;
+              var OBS=cliente[0].OBS;
+           var    EMAIL=cliente[0].EMAIL;
+          var  CPF=cliente[0].CPF;
+             var  RG=cliente[0].RG;
+             var  OBSERVACAO=cliente[0].OBSERVACAO;
+             var RAZAO_SOCIAL=cliente[0].RAZAO_SOCIAL;
+
+             var   DESDE= cliente[0].DESDE;
+             var  CNPJ=cliente[0].CNPJ;
+             var     DataNascimento=cliente[0].DataNascimento;
+             var  SEXO=cliente[0].SEXO;
+             var  ESTADO_CIVIL= cliente[0].ESTADO_CIVIL;
+             var  NATURALIDADE= cliente[0].NATURALIDADE;
+             var PROFISSAO=cliente[0].PROFISSAO;
+             var     NOME_MAE=cliente[0].NOME_MAE;
+             var  NOME_PAI= cliente[0].NOME_PAI;
+    
+             var   CLASSIFICACAO=cliente[0].CLASSIFICACAO;
+             var  ID_INDICACAO=cliente[0].ID_INDICACAO;
+             var  RESPONSAVEL=cliente[0].RESPONSAVEL;
+             var  CPF_RESPONSAVEL=cliente[0].CPF_RESPONSAVEL;
+
+
+            this.meuForm.patchValue({
+                NOME:nome, 
+                Data_Cadastro: Data_Cadastro,
+                TELEFONE:TELEFONE,
+        TELEFONE2:TELEFONE2,
+           FAX:FAX,
+                CELULAR:CELULAR,
+            CONTATO:CONTATO,
+             OBS:OBS,
+               EMAIL:EMAIL,
+        CPF:CPF,
+            RG:RG,
+            ID_INDICACAO:ID_INDICACAO,
+                 RAZAO_SOCIAL: RAZAO_SOCIAL,
+
+                DESDE: DESDE,
+              CNPJ: CNPJ,
+                  DataNascimento:DataNascimento,
+                  OBSERVACAO:OBSERVACAO,
+             SEXO: SEXO,
+       
+         ESTADO_CIVIL: ESTADO_CIVIL,
+        NATURALIDADE:NATURALIDADE,
+       PROFISSAO:PROFISSAO,
+           NOME_MAE:NOME_MAE,
+        NOME_PAI:NOME_PAI,
+       
+         CLASSIFICACAO: CLASSIFICACAO,
+   
+          RESPONSAVEL:RESPONSAVEL,
+           CPF_RESPONSAVEL:CPF_RESPONSAVEL,
+
+
+                // formControlName2: myValue2 (can be omitted)
+              });
+
+        
+     
+            })            
+
+          
+            
 }
-    }
+
+        
+
+
+
+
+        
+}
+
+
 private gridOptions:any=[];
 
     busy: boolean = false;
@@ -101,7 +192,10 @@ private gridOptions:any=[];
     listaContato: contato[] = [];
     listaEndereco: endereco[] = [];
     id: number;  
+    clientes:string;
     contatoService: ContatoService;
+
+
     convenioService: ConvenioService;
 title:string = "Create";
     cliente: ClienteComponent = new ClienteComponent();
@@ -111,7 +205,7 @@ title:string = "Create";
     route: ActivatedRoute;
     router: Router;
     mensagem: string = '';
-    fb: FormGroup;
+   
 
 
     CheckMenor(e) {
@@ -149,36 +243,21 @@ title:string = "Create";
     }
 
     Salvar(event) {
-        if (!this.meuForm.valid) {  
-            return;  
-        }
+     
 
         event.preventDefault();
 
-        console.log(this.cliente);
-        if (this.title == "Create") {  
+ 
         this.clienteService
             .PostCliente(this.cliente)
             .subscribe(res => {
                 this.mensagem = res.mensagem;
                 this.cliente = new ClienteComponent();
-                if (!res.inclusao) this.router.navigate(['']);
+               
             }, erro => console.log(erro));
 
 
         }
-
-        else if (this.title == "Edit") {  
-            this.clienteService.putCliente(this.id)  
-                .subscribe((data) => {  
-                      
-                }, erro => console.log(erro));
-        }  
-
-            
-    }
-
-  
 
 
             }

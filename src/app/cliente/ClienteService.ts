@@ -46,21 +46,21 @@ export class ClienteService {
 
       getCliente(id: number) {
 
-        return this._http.get('http://localhost:52528/api/Clientes/' +id).map((response: Response) => response.json())
+        return this._http.get('http://localhost:49427/api/Cliente/' +id).map((response: Response) => response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     
  getIndicacao() {
 
-        return this._http.get('http://localhost:52528/api/Indicacao/GetINDICACAOs').map((response: Response) => response.json())
+        return this._http.get('http://localhost:49427/api/Indicacao/GetINDICACAOs').map((response: Response) => response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     
     getAniversariantes(dataInicial: string,dataFinal: string) {
 
-        return this._http.get('http://localhost:52528/api/Clientes/'
+        return this._http.get('http://localhost:49427/api/Clientes/'
         + dataInicial + '/' + dataFinal).map((response: Response) => response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -71,16 +71,23 @@ export class ClienteService {
     }
 
     PostCliente(cliente: ClienteComponent): Observable<MensagemCadastro> {
-        return this._http.post('http://localhost:52528/api/Clientes/PostCLIENTE', JSON.stringify(cliente), { headers: this.headers })
+        return this._http.post('http://localhost:49427/api/Clientes/PostCLIENTE', JSON.stringify(cliente), { headers: this.headers })
             .map(() => new MensagemCadastro('Foto incluída com sucesso', true));
 
     }
 
 
    putCliente(id:number): Observable<MensagemCadastro> {
-        return this._http.put('http://localhost:52528/api/Clientes/PutCliente/'
+        return this._http.put('http://localhost:49427/api/Clientes/PutCliente/'
         + id , { headers: this.headers })
             .map(() => new MensagemCadastro('Cliente atualizado', true));
+
+    }
+
+   Delete(id:number): Observable<MensagemCadastro> {
+        return this._http.delete('http://localhost:49427/api/Clientes/DeleteCliente/'
+        + id , { headers: this.headers })
+            .map(() => new MensagemCadastro('Cliente removido', true));
 
     }
 }

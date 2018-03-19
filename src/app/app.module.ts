@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {DataGridModule} from 'primeng/datagrid';
 
 import{routing} from './app.routing';
-
+import {Routes, RouterModule} from "@angular/router";
 import { AppComponent } from './app.component';
 
 import { ClienteComponent } from './cliente/clienteInputs/cliente.component';
@@ -20,6 +20,13 @@ import { CadastroContatoComponent } from './cliente/cadastro-contato/cadastro-co
 import { CadastroEnderecoComponent } from './cliente/cadastro-endereco/cadastro-endereco.component';
 import { ListaClienteComponent } from './cliente/lista-cliente/lista-cliente.component';
 
+
+
+const APP_ROUTES: Routes = [
+        
+            {path: 'CadastroCliente', component:CadastroClienteComponent},
+
+];
 
 
 @NgModule({
@@ -40,8 +47,8 @@ import { ListaClienteComponent } from './cliente/lista-cliente/lista-cliente.com
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule, 
+    DataGridModule,
  
-
     HttpModule,
   
     routing,

@@ -9,6 +9,8 @@ import{CadastroClienteComponent}from './cliente/cadastro-cliente/cadastro-client
 const APP_ROUTES: Routes = [
         
             {path: 'CadastroCliente', component:CadastroClienteComponent},
+            {path: 'CadastroCliente/:id', component:CadastroClienteComponent},
+
 
 ];
 
