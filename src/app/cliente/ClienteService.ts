@@ -77,11 +77,12 @@ export class ClienteService {
     }
 
 
-   putCliente(id:number): Observable<MensagemCadastro> {
-        return this._http.put('http://localhost:49427/api/Clientes/PutCliente/'
-        + id , { headers: this.headers })
-            .map(() => new MensagemCadastro('Cliente atualizado', true));
-
+   putCliente(id:number,cliente: ClienteComponent): Observable<MensagemCadastro> {
+        return this._http.put('http://localhost:49427/api/Clientes/PutCLIENTE/'+id,
+        JSON.stringify(cliente) , { headers: this.headers })
+            .map((response: Response) => response.json())  
+            .catch(this.errorHandler);  
+    
     }
 
    Delete(id:number): Observable<MensagemCadastro> {
@@ -90,6 +91,11 @@ export class ClienteService {
             .map(() => new MensagemCadastro('Cliente removido', true));
 
     }
+
+    errorHandler(error: Response) {  
+        console.log(error);  
+        return Observable.throw(error);  
+    }  
 }
 
 export class MensagemCadastro {

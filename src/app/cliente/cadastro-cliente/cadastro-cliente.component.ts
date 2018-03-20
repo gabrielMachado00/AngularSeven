@@ -42,17 +42,6 @@ export class CadastroClienteComponent implements OnInit {
         }  
 
 
-  
-}
-
-
-
-
-
-    ngOnInit() {
-
-
-
         this.meuForm = this.fb.group({  
             ID_CLIENTE:['', [Validators.required]],
            NOME: ['', [Validators.required]],
@@ -91,97 +80,50 @@ export class CadastroClienteComponent implements OnInit {
 
     })
 
+  
+}
+
+
+nome:string;
+data_cadastro:string;
+Telefone:string;
+
+Telefone2:string;
+Celular:string;
+errorMessage: any;  
+
+    ngOnInit() {
 
 
 
 
-        if (this.id > 0) {  
-            this.title = "Edit";  
-            this.clienteService.getCliente(this.id)  
-            .subscribe(cliente=>{
-               this.cliente=cliente;
-
-            var nome=this.cliente[0].NOME;
-            var Data_Cadastro=this.cliente[0].DATA_CADASTRO;
-            var  TELEFONE=this.cliente[0].TELEFONE;
-            var   TELEFONE2=cliente[0].TELEFONE2;
-              var  FAX=cliente[0].FAX;
-             var   CELULAR=cliente[0].CELULAR;
-           var      CONTATO=cliente[0].CONTATO;
-              var OBS=cliente[0].OBS;
-           var    EMAIL=cliente[0].EMAIL;
-          var  CPF=cliente[0].CPF;
-             var  RG=cliente[0].RG;
-             var  OBSERVACAO=cliente[0].OBSERVACAO;
-             var RAZAO_SOCIAL=cliente[0].RAZAO_SOCIAL;
-
-             var   DESDE= cliente[0].DESDE;
-             var  CNPJ=cliente[0].CNPJ;
-             var     DataNascimento=cliente[0].DataNascimento;
-             var  SEXO=cliente[0].SEXO;
-             var  ESTADO_CIVIL= cliente[0].ESTADO_CIVIL;
-             var  NATURALIDADE= cliente[0].NATURALIDADE;
-             var PROFISSAO=cliente[0].PROFISSAO;
-             var     NOME_MAE=cliente[0].NOME_MAE;
-             var  NOME_PAI= cliente[0].NOME_PAI;
-    
-             var   CLASSIFICACAO=cliente[0].CLASSIFICACAO;
-             var  ID_INDICACAO=cliente[0].ID_INDICACAO;
-             var  RESPONSAVEL=cliente[0].RESPONSAVEL;
-             var  CPF_RESPONSAVEL=cliente[0].CPF_RESPONSAVEL;
 
 
-            this.meuForm.patchValue({
-                NOME:nome, 
-                Data_Cadastro: Data_Cadastro,
-                TELEFONE:TELEFONE,
-        TELEFONE2:TELEFONE2,
-           FAX:FAX,
-                CELULAR:CELULAR,
-            CONTATO:CONTATO,
-             OBS:OBS,
-               EMAIL:EMAIL,
-        CPF:CPF,
-            RG:RG,
-            ID_INDICACAO:ID_INDICACAO,
-                 RAZAO_SOCIAL: RAZAO_SOCIAL,
-
-                DESDE: DESDE,
-              CNPJ: CNPJ,
-                  DataNascimento:DataNascimento,
-                  OBSERVACAO:OBSERVACAO,
-             SEXO: SEXO,
-       
-         ESTADO_CIVIL: ESTADO_CIVIL,
-        NATURALIDADE:NATURALIDADE,
-       PROFISSAO:PROFISSAO,
-           NOME_MAE:NOME_MAE,
-        NOME_PAI:NOME_PAI,
-       
-         CLASSIFICACAO: CLASSIFICACAO,
-   
-          RESPONSAVEL:RESPONSAVEL,
-           CPF_RESPONSAVEL:CPF_RESPONSAVEL,
-
-
-                // formControlName2: myValue2 (can be omitted)
-              });
-
+    if (this.id > 0) {  
+        this.title = "Edit";  
+        this.clienteService.getCliente(this.id)  
+        .subscribe(resp => {this.meuForm.patchValue(resp[0])  
         
-     
-            })            
+         console.log(resp[0])
+        , error => this.errorMessage = error});  
 
+
+
+
+    }  
+
+
+    
           
             
-}
-
-        
 
 
 
 
         
 }
+
+
 
 
 private gridOptions:any=[];
@@ -243,10 +185,14 @@ title:string = "Create";
     }
 
     Salvar(event) {
-     
+
+        if (this.route.snapshot.params["id"]) {  
+            this.id = this.route.snapshot.params["id"];  
+        }  
+
 
         event.preventDefault();
-
+     
  
         this.clienteService
             .PostCliente(this.cliente)
@@ -255,12 +201,12 @@ title:string = "Create";
                 this.cliente = new ClienteComponent();
                
             }, erro => console.log(erro));
-
-
         }
+        
 
-
-            }
+      
+    }
+   
     
 
   
