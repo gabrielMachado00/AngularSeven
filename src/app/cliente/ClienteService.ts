@@ -77,12 +77,9 @@ export class ClienteService {
     }
 
 
-   putCliente(id:number,cliente: ClienteComponent): Observable<MensagemCadastro> {
-        return this._http.put('http://localhost:49427/api/Clientes/PutCLIENTE/'+id,
-        JSON.stringify(cliente) , { headers: this.headers })
-            .map((response: Response) => response.json())  
-            .catch(this.errorHandler);  
-    
+   putCliente(id:Number,cliente): Observable<MensagemCadastro> {
+        return this._http.put('http://localhost:49427/api/Clientes/PutCLIENTE/'+id,cliente).map((response: Response) => response.json())  
+        .catch(this.errorHandler);  
     }
 
    Delete(id:number): Observable<MensagemCadastro> {

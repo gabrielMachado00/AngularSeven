@@ -43,9 +43,9 @@ export class CadastroClienteComponent implements OnInit {
 
 
         this.meuForm = this.fb.group({  
-            ID_CLIENTE:['', [Validators.required]],
+            ID_CLIENTE:this.id,
            NOME: ['', [Validators.required]],
-            Data_Cadastro:['', [Validators.required]],
+           DATA_CADASTRO:['', [Validators.required]],
              TELEFONE: ['', [Validators.required]],
              TELEFONE2: ['', [Validators.required]],
            FAX: ['', [Validators.required]],
@@ -186,14 +186,12 @@ title:string = "Create";
 
     Salvar(event) {
 
-        if (this.route.snapshot.params["id"]) {  
-            this.id = this.route.snapshot.params["id"];  
-        }  
-
+     
 
         event.preventDefault();
      
  
+        if (this.title == "Create") {  
         this.clienteService
             .PostCliente(this.cliente)
             .subscribe(res => {
@@ -202,9 +200,22 @@ title:string = "Create";
                
             }, erro => console.log(erro));
         }
-        
+     
+     
+        else if (this.title == "Edit") {  
 
-      
+            this.clienteService
+            .putCliente(this.id,this.meuForm.value)
+            .subscribe(res => {
+                
+                this.mensagem = res.mensagem;
+                this.cliente = new ClienteComponent();
+
+
+            }) 
+
+        }
+    }
     }
    
     

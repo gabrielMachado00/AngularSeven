@@ -39,7 +39,7 @@ cliente:ClienteComponent[];
   //a variavel cliente passada no this.cliente que irá ser declarada no html e ira carregar os clientes 
   showDialogToDelete(cliente:ClienteComponent) {
     this.fullname = cliente.NOME_PREFERENCIA;
-    this.editContactId = cliente.id;
+    this.editContactId = cliente.ID_CLIENTE;
     this.displayDeleteDialog = true;
 }
 //ira carregar o id e o nome do cliente 
