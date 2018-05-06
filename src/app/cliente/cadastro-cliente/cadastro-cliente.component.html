@@ -1,0 +1,56 @@
+
+
+
+<div>
+    <form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)">
+        <div class="form-container">
+            <div class="row columns">
+     <div>
+      <div class="form-group">
+      <input type="text" formControlName='NOME' name='NOME' id='NOME' class="form-control" placeholder="Fvor Digitar Seu Nome">
+  
+      <div *ngIf="signupForm.controls['NOME'].touched && !signupForm.controls['NOME'].valid">
+          <span *ngIf="signupForm.controls['NOME'].hasError('required') ">
+              First name is required
+              </span>
+      </div>
+      </div>
+        
+      </div>
+      <div>
+      <br>
+      <input type="text" formControlName='RG' placeholder="Seu RG">
+  
+      <div *ngIf="signupForm.controls['RG'].touched && !signupForm.controls['RG'].valid">
+          <span *ngIf="signupForm.controls['RG'].hasError('required') ">
+              Last name is required
+              </span>
+              <span *ngIf="signupForm.controls['RG'].hasError('minlength') ">
+               A quantidade de número do Rg está errada
+              </span>
+              <span *ngIf="signupForm.controls['RG'].hasError('maxlength') ">
+              Máximo De Números são 10
+          </span>
+      </div>
+    </div>
+      <br>
+      <div><input type="text" formControlName='CPF' placeholder="Seu Cpf"></div>
+      <div *ngIf="signupForm.controls['CPF'].touched && !signupForm.controls['CPF'].valid">
+          <span *ngIf="signupForm.controls['CPF'].hasError('required') ">
+             Favor Digitar o CPF
+               </span>
+         
+            
+      </div>
+      <br>
+      <div>
+     
+    </div>
+    <br>
+    <div>
+  <input type="Submit" value="Post Data" [disabled]='!signupForm.valid' >
+    </div>
+    </div>
+    </div>
+    </form>
+  </div>
